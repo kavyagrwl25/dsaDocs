@@ -15,7 +15,7 @@ Medium
 
 At every node:
 
-\text{diameterThroughNode} = \text{leftHeight} + \text{rightHeight}
+diameterThroughNode= leftHeight + rightHeight
 
 Keep updating global maximum diameter.
 
