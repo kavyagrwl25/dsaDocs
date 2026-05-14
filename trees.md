@@ -189,15 +189,88 @@ Return height upward, check balance at every node.
 
 ---
 
+# LeetCode 100 — Same Tree
+
+## Pattern
+
+- DFS on two trees together
+- Return true/false directly
+- Compare structure and values
+
+## Core Idea
+
+Two trees are same if:
+
+```text
+current nodes are same
+left subtrees are same
+right subtrees are same
+```
+
+## Important Insight
+
+Here the function **does not return height**.
+
+It directly returns:
+
+```text
+Are these two subtrees same?
+```
+
+## Code
+
+```cpp
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if (p == NULL && q == NULL) return true;
+        if (p == NULL || q == NULL) return false;
+        if (p->val != q->val) return false;
+
+        return isSameTree(p->left, q->left) &&
+               isSameTree(p->right, q->right);
+    }
+};
+```
+
+## Important Concept
+
+A recursive return goes only **one level up**, not directly to main.
+
+So if one small subtree returns true, parent still checks the remaining subtree.
+
+## `&&` Short-Circuit
+
+```cpp
+A && B
+```
+
+If `A` is false, `B` is not checked.
+
+```text
+true && false = false
+false && true = false
+```
+
+So one mismatch anywhere makes the final answer false.
+
+## One-Line Revision
+
+Return whether current subtree pair is same using value check + left check + right check.
+
+---
+
 # Pattern Comparison
 
 | Problem | Function Returns | Function Computes / Checks |
 |---|---|---|
 | Diameter of Binary Tree | Height | Maximum diameter |
 | Balanced Binary Tree | Height | Balance condition |
+| Same Tree | True/False | Same structure and values |
 
 ---
 
 # Final Revision Line
 
-In tree DFS, first get answers from left and right child, then use them at the current node, and return useful information back to the parent.
+In tree DFS, first understand what each recursive call should return.  
+Sometimes it returns height and updates an answer, and sometimes it directly returns true/false.
