@@ -274,3 +274,41 @@ Return whether current subtree pair is same using value check + left check + rig
 
 In tree DFS, first understand what each recursive call should return.  
 Sometimes it returns height and updates an answer, and sometimes it directly returns true/false.
+
+---
+
+
+# 572. Subtree of Another Tree
+
+## Approach
+
+At every node of `root`:
+
+- Check if both trees are exactly same using `isSame()`
+- If yes → return `true`
+- Else search in:
+  - left subtree
+  - right subtree
+
+---
+
+## isSame()
+
+Checks whether two trees are identical:
+
+- Both NULL → true
+- One NULL → false
+- Values different → false
+- Recursively compare left and right children
+
+---
+
+## Pattern
+
+```text
+DFS Traversal + Same Tree Check
+
+Traverse every node in main tree → check if subtree rooted at that node is same as given subtree
+```
+
+---
